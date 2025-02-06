@@ -115,7 +115,10 @@ void movePlayer(int dx, int dy) {
             char op = getch();
             if (op == '>') {
                 saveGame("PrevLevel");
-                if (prevlevel) loadGame("CurrentLevel");
+                if (prevlevel) {
+                    loadGame("CurrentLevel");
+                    prevlevel = false;
+                }
                 else {
                     clear(); 
                     player.floor++;
@@ -139,7 +142,6 @@ void movePlayer(int dx, int dy) {
                 } else {
                     last_char = '.';
                     last_color = 0;
-                    usleep(2000000);
                     saveGame("CurrentLevel");
                     generate_battle_map();
                 }

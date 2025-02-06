@@ -18,7 +18,7 @@
 Cell map[MAX_FLOORS][MAP_HEIGHT][MAP_WIDTH];
 wchar_t unimap[MAX_FLOORS][MAP_HEIGHT][MAP_WIDTH];
 Room rooms[MAX_ROOMS];
-PlayerStatus player = {4, 0, 0, 100, 0, 0, 0, 0};
+PlayerStatus player = {1, 0, 0, 100, 0, 0, 0, 0};
 Inventory inventory = {0, 0, 0, 0};
 char *weapons_name[5] = {"Sword", "Dager", "Magic Wand", "Normal Arrow", "Mace"}; int weapons_count[5] = {0, 0, 0, 0, 1}; int weapons_damage[5] = {10, 12, 15, 5, 5}; int weapons_length[5] = {1, 5, 10, 5, 1}; int current_weapon = 4;
 int foods_count[4] = {0, 0, 0}; char *foods_name[4] = {"Normal", "Super", "Magic", "Corrupted"};
@@ -64,7 +64,7 @@ void display_map() {
     generate_map();
     
     if (Mix_PlayingMusic() == 0) {
-        play_music(0);
+        play_music(default_music - 1);
     }
 
     refresh();
@@ -96,13 +96,13 @@ void display_prev_game() {
 
     refresh();
     generate_map();
+    loadGame("");
     
     if (Mix_PlayingMusic() == 0) {
-        play_music(0);
+        play_music(default_music - 1);
     }
 
     refresh();
-    loadGame("");
     get_move_from_user();
 
     delwin(messageWin);

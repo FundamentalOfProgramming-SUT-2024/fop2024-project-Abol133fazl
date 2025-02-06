@@ -35,6 +35,7 @@ void saveGame(char *input) {
     fwrite(rooms, sizeof(rooms), 1, file);
     fwrite(&player_x, sizeof(int), 1, file);
     fwrite(&player_y, sizeof(int), 1, file);
+    fwrite(&default_music, sizeof(int), 1, file);
 
     fclose(file);  // close file
     updateMessages(messageWin, "Game saved successfully!");
@@ -58,10 +59,10 @@ void loadGame(char *input) {
     fread(rooms, sizeof(rooms), 1, file);
     fread(&player_x, sizeof(int), 1, file);
     fread(&player_y, sizeof(int), 1, file);
+    fread(&default_music, sizeof(int), 1, file);
 
     fclose(file);
     updateMessages(messageWin, "Game loaded successfully!");
     printMap(mapWin);
-    play_music(player.floor - 1);
     updateStatus(statusWin, &player);
 }
