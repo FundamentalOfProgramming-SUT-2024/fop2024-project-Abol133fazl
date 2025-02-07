@@ -376,10 +376,11 @@ void generate_map() {
 
     int i = 0;
     while (i < roomCount) {
+        Room *stairroom = find_room(stair_x, stair_y);
         player_x = rooms[i].x + rooms[i].width / 2;
         player_y = rooms[i].y + rooms[i].height / 2;
         Room *temp = find_room(player_x, player_y);
-        if (temp->theme == 1) break;
+        if (temp->theme == 1 && temp != stairroom) break;
         i++;
     }
     map[player.floor - 1][player_y][player_x].type = 'X';
